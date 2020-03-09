@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DataStructures
 {
-    public partial class LinkedList<T>
+    public partial class LinkedList<T> : ICollection<T>
     {
         public int Count
         {
@@ -90,6 +89,43 @@ namespace DataStructures
 
             first = last = null;
             count = 0;
+        }
+
+        public bool Contains(T item)
+        {
+            var iter = first;
+
+            if (item == null)
+            {
+                while (iter != null)
+                {
+                    if (iter.val == null)
+                    {
+                        return true;
+                    }
+
+                    iter = iter.next;
+                }
+            }
+            else
+            {
+                while (iter != null)
+                {
+                    if (iter.val.Equals(item))
+                    {
+                        return true;
+                    }
+
+                    iter = iter.next;
+                }
+            }
+
+            return false;
+        }
+
+        void ICollection<T>.Add(T item)
+        {
+            AddLast(item);
         }
 
         public override string ToString()
