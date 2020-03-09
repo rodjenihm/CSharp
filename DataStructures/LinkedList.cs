@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,29 +8,11 @@ namespace DataStructures
 {
     public partial class LinkedList<T> : ICollection<T>
     {
-        public int Count
-        {
-            get
-            {
-                return count;
-            }
-        }
+        public int Count => count;
 
-        public LinkedListNode<T> First
-        {
-            get
-            {
-                return first;
-            }
-        }
+        public LinkedListNode<T> First => first;
 
-        public LinkedListNode<T> Last
-        {
-            get
-            {
-                return last;
-            }
-        }
+        public LinkedListNode<T> Last => last;
 
         public LinkedList()
         {
@@ -126,6 +109,11 @@ namespace DataStructures
         void ICollection<T>.Add(T item)
         {
             AddLast(item);
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            return new LinkedListEnumerator<T>(this);
         }
 
         public override string ToString()

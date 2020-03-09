@@ -2,21 +2,9 @@
 {
     public class LinkedListNode<T>
     {
-        public LinkedListNode<T> Next
-        {
-            get
-            {
-                return next;
-            }
-        }
+        public LinkedListNode<T> Next => next;
 
-        public LinkedListNode<T> Previous
-        {
-            get
-            {
-                return prev;
-            }
-        }
+        public LinkedListNode<T> Previous => prev;
 
         public T Value
         {
