@@ -116,6 +116,44 @@ namespace DataStructures
             return false;
         }
 
+        public LinkedListNode<T> Find(T value)
+        {
+            var iter = first;
+
+            var c = System.Collections.Generic.Comparer<T>.Default;
+
+            while (iter != null)
+            {
+                if (c.Compare(iter.Value, value) == 0)
+                {
+                    break;
+                }
+
+                iter = iter.next;
+            }
+
+            return iter;
+        }
+
+        public LinkedListNode<T> FindLast(T value)
+        {
+            var iter = last;
+
+            var c = System.Collections.Generic.Comparer<T>.Default;
+
+            while (iter != null)
+            {
+                if (c.Compare(iter.Value, value) == 0)
+                {
+                    break;
+                }
+
+                iter = iter.prev;
+            }
+
+            return iter;
+        }
+
         void ICollection<T>.Add(T item)
         {
             AddLast(item);
