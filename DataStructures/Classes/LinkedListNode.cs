@@ -19,7 +19,6 @@
             }
         }
 
-
         public LinkedListNode()
             : this(default, null, null)
         {

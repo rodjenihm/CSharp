@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DataStructures
 {
-    public interface IEnumerator<T>
+    public interface IEnumerator<out T>
     {
         T Current { get; }
         bool MoveNext();

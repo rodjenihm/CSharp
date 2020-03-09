@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +15,15 @@ namespace DataStructures
 
         public LinkedList()
         {
+        }
+
+        public LinkedList(IEnumerable<T> collection)
+        {
+            foreach (var item in collection)
+            {
+                AddLast(item);
+                count++;
+            }
         }
 
         public LinkedListNode<T> AddFirst(T value)
@@ -92,9 +100,11 @@ namespace DataStructures
             }
             else
             {
+                var c = System.Collections.Generic.Comparer<T>.Default;
+
                 while (iter != null)
                 {
-                    if (iter.val.Equals(item))
+                    if (c.Compare(iter.Value, item) == 0)
                     {
                         return true;
                     }
@@ -111,9 +121,39 @@ namespace DataStructures
             AddLast(item);
         }
 
+        public void CopyTo(T[] array, int index)
+        {
+            if (array == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            if (index < 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
+            if (index + count > array.Length)
+            {
+                throw new ArgumentException();
+            }
+
+            var iter = first;
+
+            for (int i = index; i < index + count; i++, iter = iter.next)
+            {
+                array[i] = iter.Value;
+            }
+        }
+
         public IEnumerator<T> GetEnumerator()
         {
             return new LinkedListEnumerator<T>(this);
+        }
+
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
+        {
+            return GetEnumerator();
         }
 
         public override string ToString()

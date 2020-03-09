@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DataStructures
 {
-    public interface IEnumerable<T>
+    public interface IEnumerable<out T>
     {
         IEnumerator<T> GetEnumerator();
     }
