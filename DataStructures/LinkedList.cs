@@ -92,6 +92,25 @@ namespace DataStructures
             count = 0;
         }
 
+        public override string ToString()
+        {
+            StringBuilder output = new StringBuilder();
+
+            output.Append("{");
+
+            var iter = first;
+
+            while (iter != null)
+            {
+                output.Append($"{iter.Value},");
+                iter = iter.next;
+            }
+
+            output.Append("}");
+
+            return output.ToString();
+        }
+
         private int count = 0;
         private LinkedListNode<T> first = null;
         private LinkedListNode<T> last = null;

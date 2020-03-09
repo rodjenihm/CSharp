@@ -22,7 +22,7 @@
         {
             get
             {
-                return Value;
+                return val;
             }
 
             set
