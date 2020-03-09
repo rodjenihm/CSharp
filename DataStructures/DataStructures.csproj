@@ -42,12 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpers\LinkedListEnumerator.cs" />
+    <Compile Include="Classes\LinkedListEnumerator.cs" />
     <Compile Include="Interfaces\IEnumerable.cs" />
     <Compile Include="Interfaces\IEnumerator.cs" />
     <Compile Include="Interfaces\ICollection.cs" />
     <Compile Include="LinkedList.cs" />
-    <Compile Include="Helpers\LinkedListNode.cs" />
+    <Compile Include="Classes\LinkedListNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
