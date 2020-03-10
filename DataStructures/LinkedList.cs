@@ -154,6 +154,32 @@ namespace DataStructures
             return iter;
         }
 
+        public void CopyTo(T[] array, int index)
+        {
+            if (array == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            if (index < 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
+            if (index + count > array.Length)
+            {
+                throw new ArgumentException();
+            }
+
+            var iter = first;
+
+            for (int i = index; i < index + count; i++, iter = iter.next)
+            {
+                array[i] = iter.Value;
+            }
+        }
+
+
         public void RemoveFirst()
         {
             if (first == null)
@@ -205,29 +231,34 @@ namespace DataStructures
             AddLast(item);
         }
 
-        public void CopyTo(T[] array, int index)
+        public bool Remove(T item)
         {
-            if (array == null)
+            var nodeToRemove = Find(item);
+
+            if (nodeToRemove == null)
             {
-                throw new ArgumentNullException();
+                return false;
             }
 
-            if (index < 0)
+            if (nodeToRemove == first)
             {
-                throw new ArgumentOutOfRangeException();
+                RemoveFirst();
+                return true;
             }
 
-            if (index + count > array.Length)
+            if (nodeToRemove == last)
             {
-                throw new ArgumentException();
+                RemoveLast();
+                return true;
             }
 
-            var iter = first;
+            nodeToRemove.prev.next = nodeToRemove.next;
+            nodeToRemove.next.prev = nodeToRemove.prev;
+            nodeToRemove.prev = null;
+            nodeToRemove.next = null;
+            count--;
 
-            for (int i = index; i < index + count; i++, iter = iter.next)
-            {
-                array[i] = iter.Value;
-            }
+            return true;
         }
 
         public IEnumerator<T> GetEnumerator()

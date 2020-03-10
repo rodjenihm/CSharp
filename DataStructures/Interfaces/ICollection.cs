@@ -13,5 +13,6 @@ namespace DataStructures
         void Clear();
         bool Contains(T item);
         void CopyTo(T[] array, int index);
+        bool Remove(T item);
     }
 }
