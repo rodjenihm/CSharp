@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DataStructures
 {
-    public partial class LinkedList<T> : ICollection<T>
+    public partial class LinkedList<T> : ICollection<T>, IEnumerable<T>
     {
         public int Count => count;
 

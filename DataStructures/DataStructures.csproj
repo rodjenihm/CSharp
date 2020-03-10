@@ -46,6 +46,7 @@
     <Compile Include="Interfaces\IEnumerable.cs" />
     <Compile Include="Interfaces\IEnumerator.cs" />
     <Compile Include="Interfaces\ICollection.cs" />
+    <Compile Include="Interfaces\IList.cs" />
     <Compile Include="LinkedList.cs" />
     <Compile Include="Classes\LinkedListNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
