@@ -154,6 +154,52 @@ namespace DataStructures
             return iter;
         }
 
+        public void RemoveFirst()
+        {
+            if (first == null)
+            {
+                throw new InvalidOperationException();
+            }
+
+            var temp = first;
+            first = first.next;
+            if (first == null)
+            {
+                last = null;
+            }
+            else
+            {
+                first.prev = null;
+                temp.next = null;
+            }
+
+            count--;
+        }
+
+        public void RemoveLast()
+        {
+            if (first == null)
+            {
+                throw new InvalidOperationException();
+            }
+
+            var temp = last;
+            last = last.prev;
+            if (last == null)
+            {
+                first = null;
+            }
+            else
+            {
+                last.next = null;
+                temp.prev = null;
+            }
+
+
+            count--;
+        }
+
+
         void ICollection<T>.Add(T item)
         {
             AddLast(item);
