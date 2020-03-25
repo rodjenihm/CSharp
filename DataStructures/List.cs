@@ -11,17 +11,34 @@ namespace DataStructures
 
         public int Count => count;
 
-        public int Capacity { get; set; } = 0;
+        public int Capacity
+        {
+            get
+            {
+                return capacity;
+            }
 
-        public List()
-            : this(0)
+            set
+            {
+                if (value < capacity)
+                {
+                    throw new ArgumentOutOfRangeException("value", "capacity was less than the current size.");
+                }
+                else if (value > capacity)
+                {
+                    capacity = value;
+                    ReallocateArray(value);
+                }
+            }
+        }
+
+        public List() : this(0)
         {
         }
 
-        public List(IEnumerable<T> collection)
-        {
-            Capacity = collection.Count();
-        }
+        //public List(IEnumerable<T> collection) : this(collection.Count())
+        //{
+        //}
 
         public List(int capacity)
         {
@@ -31,12 +48,24 @@ namespace DataStructures
 
         public void Add(T item)
         {
-            throw new NotImplementedException();
+            EnsureCapacity();
+
+            array[count] = item;
+
+            count++;
         }
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            if (count > 0)
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    array[i] = default;
+                }
+
+                count = 0;
+            }
         }
 
         public bool Contains(T item)
@@ -74,8 +103,55 @@ namespace DataStructures
             throw new NotImplementedException();
         }
 
+        public override string ToString()
+        {
+            StringBuilder output = new StringBuilder();
+
+            output.Append("{");
+
+            for (int i = 0; i < count; i++)
+            {
+                output.Append($"{array[i]},");
+            }
+
+            output.Append("}");
+
+            return output.ToString();
+        }
+
         private int count = 0;
-        private int idx = -1;
+        private int capacity;
         private T[] array;
+
+        private bool ArrayFull()
+        {
+            return count == Capacity;
+        }
+
+        private void ReallocateArray(int capacity)
+        {
+            var newArray = new T[capacity];
+            for (int i = 0; i < count; i++)
+            {
+                newArray[i] = array[i];
+            }
+
+            array = newArray;
+
+            this.capacity = capacity;
+        }
+
+        private int CalculateCapacity()
+        {
+            return capacity == 0 ? 4 : capacity * 2;
+        }
+
+        private void EnsureCapacity()
+        {
+            if (ArrayFull())
+            {
+                ReallocateArray(CalculateCapacity());
+            }
+        }
     }
 }
