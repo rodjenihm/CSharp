@@ -36,23 +36,40 @@ namespace DataStructures
         {
         }
 
-        //public List(IEnumerable<T> collection) : this(collection.Count())
-        //{
-        //}
+        public List(IEnumerable<T> collection) : this(collection.Count())
+        {
+            foreach (var item in collection)
+            {
+                Add(item);
+            }
+        }
 
         public List(int capacity)
         {
-            Capacity = capacity;
-            array = new T[capacity];
+            this.capacity = capacity;
+            items = new T[capacity];
         }
 
         public void Add(T item)
         {
             EnsureCapacity();
 
-            array[count] = item;
+            items[count] = item;
 
             count++;
+        }
+
+        public void AddRange(IEnumerable<T> collection)
+        {
+            if (collection == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            foreach (var item in collection)
+            {
+                Add(item);
+            }
         }
 
         public void Clear()
@@ -61,7 +78,7 @@ namespace DataStructures
             {
                 for (int i = 0; i < count; i++)
                 {
-                    array[i] = default;
+                    items[i] = default;
                 }
 
                 count = 0;
@@ -70,7 +87,7 @@ namespace DataStructures
 
         public bool Contains(T item)
         {
-            throw new NotImplementedException();
+            return IndexOf(item) != -1;
         }
 
         public void CopyTo(T[] array, int index)
@@ -85,22 +102,80 @@ namespace DataStructures
 
         public int IndexOf(T item)
         {
-            throw new NotImplementedException();
+            if (item == null)
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    if (items[i] == null)
+                    {
+                        return i;
+                    }
+                }
+            }
+            else
+            {
+                var c = System.Collections.Generic.EqualityComparer<T>.Default;
+
+                for (int i = 0; i < count; i++)
+                {
+                    if (c.Equals(items[i], item))
+                    {
+                        return i;
+                    }
+                }
+            }
+
+            return -1;
         }
 
         public void Insert(int index, T item)
         {
-            throw new NotImplementedException();
+            if (index < 0 || index > count)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
+            EnsureCapacity();
+
+            for (int i = index; i < count; i++)
+            {
+                items[i + 1] = items[i];
+            }
+
+            items[index] = item;
+
+            count++;
         }
 
         public bool Remove(T item)
         {
-            throw new NotImplementedException();
+            var itemIndex = IndexOf(item);
+
+            if (itemIndex == -1)
+            {
+                return false;
+            }
+
+            RemoveAt(itemIndex);
+
+            return true;
         }
 
         public void RemoveAt(int index)
         {
-            throw new NotImplementedException();
+            if (index < 0 || index >= count)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
+            for (int i = index; i < count - 1; i++)
+            {
+                items[i] = items[i + 1];
+            }
+
+            items[count - 1] = default;
+
+            count--;
         }
 
         public override string ToString()
@@ -111,7 +186,7 @@ namespace DataStructures
 
             for (int i = 0; i < count; i++)
             {
-                output.Append($"{array[i]},");
+                output.Append($"{items[i]},");
             }
 
             output.Append("}");
@@ -121,7 +196,7 @@ namespace DataStructures
 
         private int count = 0;
         private int capacity;
-        private T[] array;
+        private T[] items;
 
         private bool ArrayFull()
         {
@@ -133,10 +208,10 @@ namespace DataStructures
             var newArray = new T[capacity];
             for (int i = 0; i < count; i++)
             {
-                newArray[i] = array[i];
+                newArray[i] = items[i];
             }
 
-            array = newArray;
+            items = newArray;
 
             this.capacity = capacity;
         }
