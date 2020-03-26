@@ -177,7 +177,7 @@ namespace DataStructures
 
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            return new ListEnumerator<T>(items, count);
         }
 
         public int IndexOf(T item)

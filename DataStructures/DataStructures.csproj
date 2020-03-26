@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\LinkedListEnumerator.cs" />
+    <Compile Include="Classes\ListEnumerator.cs" />
     <Compile Include="Extensions\MyLing.cs" />
     <Compile Include="Interfaces\IEnumerable.cs" />
     <Compile Include="Interfaces\IEnumerator.cs" />
