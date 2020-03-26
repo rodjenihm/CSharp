@@ -7,7 +7,28 @@ namespace DataStructures
 {
     public class List<T> : IList<T>, ICollection<T>, IEnumerable<T>
     {
-        public T this[int index] { get => items[index]; set => items[index] = value; }
+        public T this[int index]
+        {
+            get
+            {
+                if (index < 0 || index >= count)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+
+                return items[index];
+            }
+
+            set
+            {
+                if (index < 0 || index >= count)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+
+                items[index] = value;
+            }
+        }
 
         public int Count => count;
 

@@ -23,7 +23,7 @@ namespace DataStructures
 
             foreach (var item in collection)
             {
-                Add(item);
+                Push(item);
             }
         }
 
