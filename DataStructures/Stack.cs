@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataStructures
 {
-    public class Stack<T> : ICollection<T>, IEnumerable<T>
+    public class Stack<T> : IReadOnlyCollection<T>, IEnumerable<T>
     {
         public int Count => items.Count;
 
@@ -36,11 +36,6 @@ namespace DataStructures
 
             items = new List<T>(capacity);
             sp = -1;
-        }
-
-        public void Add(T item)
-        {
-            throw new NotImplementedException();
         }
 
         public void Clear()
@@ -88,11 +83,6 @@ namespace DataStructures
         {
             items.Add(item);
             sp++;
-        }
-
-        public bool Remove(T item)
-        {
-            throw new NotImplementedException();
         }
 
         public override string ToString()

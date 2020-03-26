@@ -49,10 +49,12 @@
     <Compile Include="Interfaces\IEnumerator.cs" />
     <Compile Include="Interfaces\ICollection.cs" />
     <Compile Include="Interfaces\IList.cs" />
+    <Compile Include="Interfaces\IReadOnlyCollection.cs" />
     <Compile Include="LinkedList.cs" />
     <Compile Include="Classes\LinkedListNode.cs" />
     <Compile Include="List.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queue.cs" />
     <Compile Include="Stack.cs" />
   </ItemGroup>
   <ItemGroup />
