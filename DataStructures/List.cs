@@ -90,10 +90,90 @@ namespace DataStructures
             return IndexOf(item) != -1;
         }
 
-        public void CopyTo(T[] array, int index)
+        public void CopyTo(T[] array, int arrayIndex)
         {
-            throw new NotImplementedException();
+            if (array == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            if (arrayIndex < 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
+            if (count > array.Length - arrayIndex)
+            {
+                throw new ArgumentException();
+            }
+
+            for (int i = 0; i < count; i++)
+            {
+                array[i + arrayIndex] = items[i];
+            }
         }
+
+        public void CopyTo(T[] array)
+        {
+            CopyTo(array, 0);
+        }
+
+        public bool Exists(Predicate<T> match)
+        {
+            if (match == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            for (int i = 0; i < count; i++)
+            {
+                if (match.Invoke(items[i]))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public T Find(Predicate<T> match)
+        {
+            if (match == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            for (int i = 0; i < count; i++)
+            {
+                if (match.Invoke(items[i]))
+                {
+                    return items[i];
+                }
+            }
+
+            return default;
+        }
+
+        public List<T> FindAll(Predicate<T> match)
+        {
+            if (match == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            var list = new List<T>();
+
+            for (int i = 0; i < count; i++)
+            {
+                if (match.Invoke(items[i]))
+                {
+                    list.Add(items[i]);
+                }
+            }
+
+            return list;
+        }
+
 
         public IEnumerator<T> GetEnumerator()
         {
@@ -143,7 +223,6 @@ namespace DataStructures
             }
 
             items[index] = item;
-
             count++;
         }
 
@@ -176,6 +255,15 @@ namespace DataStructures
             items[count - 1] = default;
 
             count--;
+        }
+
+        public T[] ToArray()
+        {
+            var array = new T[count];
+
+            Array.Copy(items, array, count);
+
+            return array;
         }
 
         public override string ToString()
