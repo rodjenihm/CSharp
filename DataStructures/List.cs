@@ -282,6 +282,24 @@ namespace DataStructures
             return output.ToString();
         }
 
+        public bool TrueForAll(Predicate<T> match)
+        {
+            if (match == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            for (int i = 0; i < count; i++)
+            {
+                if (!match.Invoke(items[i]))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         private int count = 0;
         private int capacity;
         private T[] items;
