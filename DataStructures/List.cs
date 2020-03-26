@@ -7,7 +7,7 @@ namespace DataStructures
 {
     public class List<T> : IList<T>, ICollection<T>, IEnumerable<T>
     {
-        public T this[int index] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public T this[int index] { get => items[index]; set => items[index] = value; }
 
         public int Count => count;
 
@@ -38,6 +38,11 @@ namespace DataStructures
 
         public List(IEnumerable<T> collection) : this(collection.Count())
         {
+            if (collection == null)
+            {
+                throw new ArgumentNullException();
+            }
+
             foreach (var item in collection)
             {
                 Add(item);
@@ -46,6 +51,11 @@ namespace DataStructures
 
         public List(int capacity)
         {
+            if (capacity < 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
             this.capacity = capacity;
             items = new T[capacity];
         }
@@ -255,6 +265,11 @@ namespace DataStructures
             items[count - 1] = default;
 
             count--;
+        }
+
+        public void Reverse()
+        {
+            Array.Reverse(items, 0, count);
         }
 
         public T[] ToArray()
