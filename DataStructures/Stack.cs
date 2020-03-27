@@ -8,7 +8,7 @@ namespace DataStructures
 {
     public class Stack<T> : IReadOnlyCollection<T>, IEnumerable<T>
     {
-        public int Count => items.Count;
+        public int Count => items.GetRange(0, sp + 1).Count;
 
         public Stack() : this(0)
         {
@@ -46,17 +46,17 @@ namespace DataStructures
 
         public bool Contains(T item)
         {
-            return items.Contains(item);
+            return items.GetRange(0, sp + 1).Contains(item);
         }
 
         public void CopyTo(T[] array, int index)
         {
-            items.CopyTo(array, index);
+            items.GetRange(0, sp + 1).CopyTo(array, index);
         }
 
         public IEnumerator<T> GetEnumerator()
         {
-            return items.GetEnumerator();
+            return items.GetRange(0, sp + 1).GetEnumerator();
         }
 
         public T Peek()
@@ -87,18 +87,11 @@ namespace DataStructures
 
         public override string ToString()
         {
-            StringBuilder output = new StringBuilder();
+            var stackList = items.GetRange(0, sp + 1);
 
-            output.Append("{");
+            stackList.Reverse();
 
-            for (int i = items.Count - 1; i >= 0; i--)
-            {
-                output.Append($"{items[i]},");
-            }
-
-            output.Append("}");
-
-            return output.ToString();
+            return stackList.ToString();
         }
 
         private readonly List<T> items;

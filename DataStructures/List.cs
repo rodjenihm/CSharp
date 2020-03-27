@@ -205,10 +205,31 @@ namespace DataStructures
             return list;
         }
 
-
         public IEnumerator<T> GetEnumerator()
         {
             return new ListEnumerator<T>(items, count);
+        }
+
+        public List<T> GetRange(int index, int count)
+        {
+            if (index < 0 || count < 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
+            if (index + count > this.count)
+            {
+                throw new ArgumentException();
+            }
+
+            var list = new List<T>(count);
+
+            for (int i = index; i < index + count; i++)
+            {
+                list.Add(items[i]);
+            }
+
+            return list;
         }
 
         public int IndexOf(T item)
