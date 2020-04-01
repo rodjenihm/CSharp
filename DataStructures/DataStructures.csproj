@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BinaryTree.cs" />
     <Compile Include="Classes\BinaryTreeNode.cs" />
     <Compile Include="Classes\LinkedListEnumerator.cs" />
     <Compile Include="Classes\ListEnumerator.cs" />
