@@ -8,6 +8,10 @@ namespace DataStructures.Classes
 {
     public class BinaryTreeNode<T>
     {
+        public T Value { get => value; set => this.value = value; }
+        public BinaryTreeNode<T> Left { get => left; set => left = value; }
+        public BinaryTreeNode<T> Right { get => right; set => right = value; }
+
         public BinaryTreeNode() : this(default, null, null)
         {
         }
