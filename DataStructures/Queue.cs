@@ -93,7 +93,7 @@ namespace DataStructures
                 throw new InvalidOperationException();
             }
 
-            return items[dp];
+            return items[dp + 1];
         }
 
         public T[] ToArray()
