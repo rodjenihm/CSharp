@@ -59,37 +59,6 @@ namespace DataStructures
             }
         }
 
-        public virtual void Remove(T item)
-        {
-            if (IsEmpty())
-            {
-                return;
-            }
-
-            var nodesQueue = new Queue<BinaryTreeNode<T>>();
-
-            var temp = root;
-
-            nodesQueue.Enqueue(temp);
-
-            while (nodesQueue.Count != 0)
-            {
-                temp = nodesQueue.Dequeue();
-
-
-                if (temp.right != null)
-                {
-                    nodesQueue.Enqueue(temp.right);
-                    Console.WriteLine(temp.right.value);
-                }
-                else if (temp.left != null)
-                {
-                    nodesQueue.Enqueue(temp.left);
-                    Console.WriteLine(temp.left.value);
-                }
-            }
-        }
-
         public bool IsEmpty()
         {
             return root == null;
