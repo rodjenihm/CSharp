@@ -1,5 +1,4 @@
-﻿using DataStructures.Classes;
-using System;
+﻿using System;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -56,6 +55,37 @@ namespace DataStructures
                 else
                 {
                     nodesQueue.Enqueue(temp.right);
+                }
+            }
+        }
+
+        public virtual void Remove(T item)
+        {
+            if (IsEmpty())
+            {
+                return;
+            }
+
+            var nodesQueue = new Queue<BinaryTreeNode<T>>();
+
+            var temp = root;
+
+            nodesQueue.Enqueue(temp);
+
+            while (nodesQueue.Count != 0)
+            {
+                temp = nodesQueue.Dequeue();
+
+
+                if (temp.right != null)
+                {
+                    nodesQueue.Enqueue(temp.right);
+                    Console.WriteLine(temp.right.value);
+                }
+                else if (temp.left != null)
+                {
+                    nodesQueue.Enqueue(temp.left);
+                    Console.WriteLine(temp.left.value);
                 }
             }
         }

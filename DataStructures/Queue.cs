@@ -69,6 +69,7 @@ namespace DataStructures
             // and bunch of unused space in the beginning of the array
             if (IsEmpty())
             {
+                items.Clear();
                 dp = ep = -1;
             }
 
