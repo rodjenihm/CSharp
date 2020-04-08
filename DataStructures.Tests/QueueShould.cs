@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace DataStructures
@@ -17,7 +15,7 @@ namespace DataStructures
         [Fact]
         public void HaveCountOfZeroIfEmpty()
         {
-            Assert.Empty(queue);
+            Assert.Equal(0, queue.Count);
         }
 
         [Fact]
@@ -25,7 +23,7 @@ namespace DataStructures
         {
             queue.Enqueue(1);
 
-            Assert.Single(queue);
+            Assert.Equal(1, queue.Count);
 
             queue.Enqueue(2);
 
@@ -75,7 +73,7 @@ namespace DataStructures
 
             queue.Clear();
 
-            Assert.Empty(queue);
+            Assert.Equal(0, queue.Count);
         }
 
         [Fact]
