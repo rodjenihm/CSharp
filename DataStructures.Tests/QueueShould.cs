@@ -102,5 +102,28 @@ namespace DataStructures
         {
             Assert.Throws<InvalidOperationException>(() => queue.Peek());
         }
+
+        [Fact]
+        public void EnumerateElements()
+        {
+            queue.Enqueue(1);
+            queue.Enqueue(2);
+            queue.Enqueue(3);
+
+            var enumerator = queue.GetEnumerator();
+
+            Assert.NotNull(enumerator);
+
+            Assert.True(enumerator.MoveNext());
+            Assert.Equal(1, enumerator.Current);
+
+            Assert.True(enumerator.MoveNext());
+            Assert.Equal(2, enumerator.Current);
+
+            Assert.True(enumerator.MoveNext());
+            Assert.Equal(3, enumerator.Current);
+
+            Assert.False(enumerator.MoveNext());
+        }
     }
 }
