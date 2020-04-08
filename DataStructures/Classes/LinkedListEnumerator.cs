@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,8 @@ namespace DataStructures
     public class LinkedListEnumerator<T> : IEnumerator<T>
     {
         public T Current => iter.Value;
+
+        object IEnumerator.Current => throw new NotImplementedException();
 
         public LinkedListEnumerator(LinkedList<T> linkedList)
         {
@@ -32,6 +35,11 @@ namespace DataStructures
         public void Reset()
         {
             reset = true;
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
 
         private readonly LinkedList<T> linkedList;

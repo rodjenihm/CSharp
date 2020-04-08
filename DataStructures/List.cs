@@ -1,5 +1,7 @@
-﻿using DataStructures.Extensions;
-using System;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -52,6 +54,8 @@ namespace DataStructures
                 }
             }
         }
+
+        public bool IsReadOnly => throw new NotImplementedException();
 
         public List() : this(0)
         {
@@ -390,6 +394,11 @@ namespace DataStructures
             {
                 ReallocateArray(CalculateCapacity());
             }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
         }
     }
 }

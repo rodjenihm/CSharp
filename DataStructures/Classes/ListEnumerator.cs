@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,8 @@ namespace DataStructures
     public class ListEnumerator<T> : IEnumerator<T>
     {
         public T Current => items[idx];
+
+        object IEnumerator.Current => throw new NotImplementedException();
 
         public ListEnumerator(T[] items, int count)
         {
@@ -25,6 +28,11 @@ namespace DataStructures
         public void Reset()
         {
             idx = -1;
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
 
         private readonly T[] items;

@@ -17,7 +17,7 @@ namespace DataStructures
         [Fact]
         public void HaveCountOfZeroIfEmpty()
         {
-            Assert.Equal(0, queue.Count);
+            Assert.Empty(queue);
         }
 
         [Fact]
@@ -25,7 +25,7 @@ namespace DataStructures
         {
             queue.Enqueue(1);
 
-            Assert.Equal(1, queue.Count);
+            Assert.Single(queue);
 
             queue.Enqueue(2);
 
@@ -75,7 +75,7 @@ namespace DataStructures
 
             queue.Clear();
 
-            Assert.Equal(0, queue.Count);
+            Assert.Empty(queue);
         }
 
         [Fact]

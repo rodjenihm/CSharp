@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +14,8 @@ namespace DataStructures
         public LinkedListNode<T> First => first;
 
         public LinkedListNode<T> Last => last;
+
+        public bool IsReadOnly => throw new NotImplementedException();
 
         public LinkedList()
         {
@@ -288,6 +292,11 @@ namespace DataStructures
             output.Append("}");
 
             return output.ToString();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
         }
 
         private int count = 0;
