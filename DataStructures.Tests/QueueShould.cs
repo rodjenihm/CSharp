@@ -12,26 +12,20 @@ namespace DataStructures
             queue = new Queue<int>();
         }
 
-        [Fact]
-        public void HaveCountOfZeroIfEmpty()
+        [Theory]
+        [MemberData(nameof(QueueShouldTestData.CountElementsData), MemberType = typeof(QueueShouldTestData))]
+        public void CountElements<T>(Queue<T> queue, int count)
         {
-            Assert.Equal(0, queue.Count);
+            Assert.Equal(count, queue.Count);
         }
 
-        [Fact]
-        public void EnqueueElement()
+        [Theory]
+        [MemberData(nameof(QueueShouldTestData.EnqueueElementData), MemberType = typeof(QueueShouldTestData))]
+        public void EnqueueElement<T>(Queue<T> queue, T elementToEnqueue, int countAfterEnqueuing)
         {
-            queue.Enqueue(1);
+            queue.Enqueue(elementToEnqueue);
 
-            Assert.Equal(1, queue.Count);
-
-            queue.Enqueue(2);
-
-            Assert.Equal(2, queue.Count);
-
-            queue.Enqueue(3);
-
-            Assert.Equal(3, queue.Count);
+            Assert.Equal(countAfterEnqueuing, queue.Count);
         }
 
         [Fact]
@@ -89,16 +83,20 @@ namespace DataStructures
             Assert.False(queue.Contains(4));
         }
 
-        [Fact]
-        public void ThrowExceptionIfDequeuingWhileBeingEmpty()
+        [Theory]
+        [MemberData(nameof(QueueShouldTestData.ThrowExceptionIfDequeuingOrPeekingWhileBeingEmptyData),
+            MemberType = typeof(QueueShouldTestData))]
+        public void ThrowExceptionIfDequeuingWhileBeingEmpty<T>(Queue<T> queue)
         {
             Assert.Throws<InvalidOperationException>(() => queue.Dequeue());
         }
 
-        [Fact]
-        public void ThrowExceptionIfPeekingWhileBeingEmpty()
+        [Theory]
+        [MemberData(nameof(QueueShouldTestData.ThrowExceptionIfDequeuingOrPeekingWhileBeingEmptyData),
+            MemberType = typeof(QueueShouldTestData))]
+        public void ThrowExceptionIfPeekingWhileBeingEmpty<T>(Queue<T> queue)
         {
-            Assert.Throws<InvalidOperationException>(() => queue.Peek());
+            Assert.Throws<InvalidOperationException>(() => queue.Dequeue());
         }
 
         [Fact]
